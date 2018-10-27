@@ -7,9 +7,9 @@ import About from '../about/about';
 import Menu from '../template/menu';
 
 export default props => (
-	<div className='container'>
-		<Menu />
-	    <Todo />
-	    <About />
-	</div>
+    <div className='container'>
+        <Menu />
+        <Todo />
+        <About />
+    </div>
 );
