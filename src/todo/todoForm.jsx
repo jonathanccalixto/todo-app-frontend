@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 
 import Grid from '../template/grid';
 import IconButton from '../template/iconButton';
-import { add, changeDescription, search } from './todoActions';
+import { add, changeDescription, search, clear } from './todoActions';
 
 class TodoForm extends Component {
     constructor(props) {
@@ -13,12 +13,12 @@ class TodoForm extends Component {
     };
 
     keyHandle(event) {
-        const { add, search, description } = this.props;
+        const { add, search, description, clear } = this.props;
 
         if ( event.key === 'Enter' ) {
             event.shiftKey ? search() : add(description) ;
         } else if ( event.key === 'Escape' ) {
-            this.props.handleClear();
+            clear();
         }
     };
 
@@ -27,7 +27,7 @@ class TodoForm extends Component {
     };
 
     render() {
-        const { add, search, description } = this.props;
+        const { add, search, changeDescription, description, clear } = this.props;
 
         return (
             <div role='form' className='todoForm'>
@@ -35,9 +35,9 @@ class TodoForm extends Component {
                     <input id='description'
                            className='form-control'
                            placeholder='Adicione uma tarefa'
-                           onChange={this.props.changeDescription}
+                           onChange={changeDescription}
                            onKeyUp={this.keyHandle}
-                           value={this.props.description}
+                           value={description}
                     ></input>  
                 </Grid>
                 <Grid cols='12 3 2'>
@@ -51,7 +51,7 @@ class TodoForm extends Component {
                     ></IconButton>
                     <IconButton style='default'
                                 icon='close'
-                                onClick={this.props.handleClear}
+                                onClick={clear}
                     ></IconButton>
                 </Grid>
             </div>
@@ -61,6 +61,6 @@ class TodoForm extends Component {
 
 const mapStateToProps = state => ({ description: state.todo.description });
 const mapDispatchToProps = dispatch => 
-    bindActionCreators({ add, changeDescription, search }, dispatch);
+    bindActionCreators({ add, changeDescription, search, clear }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoForm);
