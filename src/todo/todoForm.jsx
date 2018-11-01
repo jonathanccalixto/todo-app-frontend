@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import Grid from '../template/grid';
-import IconButton from '../template/iconButton';
-import { add, changeDescription, search, clear } from './todoActions';
+import Grid from 'src/template/grid';
+import IconButton from 'src/template/iconButton';
+import { add, changeDescription, search, clear } from 'src/todo/todoActions';
 
 class TodoForm extends Component {
     constructor(props) {
@@ -32,27 +32,31 @@ class TodoForm extends Component {
         return (
             <div role='form' className='todoForm'>
                 <Grid cols='12 9 10'>
-                    <input id='description'
-                           className='form-control'
-                           placeholder='Adicione uma tarefa'
-                           onChange={changeDescription}
-                           onKeyUp={this.keyHandle}
-                           value={description}
-                    ></input>  
+                    <input
+                        id='description'
+                        className='form-control'
+                        placeholder='Adicione uma tarefa'
+                        onChange={changeDescription}
+                        onKeyUp={this.keyHandle}
+                        value={description}
+                    />  
                 </Grid>
                 <Grid cols='12 3 2'>
-                    <IconButton style='primary'
-                                icon='plus'
-                                onClick={() => add(description)}
-                    ></IconButton>
-                    <IconButton style='info'
-                                icon='search'
-                                onClick={search}
-                    ></IconButton>
-                    <IconButton style='default'
-                                icon='close'
-                                onClick={clear}
-                    ></IconButton>
+                    <IconButton
+                        style='primary'
+                        icon='plus'
+                        onClick={() => add(description)}
+                    />
+                    <IconButton
+                        style='info'
+                        icon='search'
+                        onClick={search}
+                    />
+                    <IconButton
+                        style='default'
+                        icon='close'
+                        onClick={clear}
+                    />
                 </Grid>
             </div>
         );
